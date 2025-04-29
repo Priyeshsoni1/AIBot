@@ -20,7 +20,7 @@ const ChatTextCard = ({ item }) => {
       <Box src={src} component={"img"} width={"60px"} height={"60px"} />
       <Stack textAlign={"left"}>
         <Typography component={"span"} fontWeight={"700"}>
-          {item.type == 1 ? "Soul Ai" : "You"}
+          {item.type == 1 ? "Soul AI" : "You"}
         </Typography>
         <Typography>{item.text}</Typography>
         <Typography
