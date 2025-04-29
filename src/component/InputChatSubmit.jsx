@@ -16,7 +16,16 @@ const InputChatSubmit = ({ chat, setChat, handleResponse }) => {
   return (
     <Box>
       <Box p={".5rem .5rem"}>
-        <Box>
+        <Box
+          component={"form"}
+          onSubmit={(e) => {
+            e.preventDefault(); // ⛔️ Stops page refresh
+            if (input != "") {
+              handleResponse(input);
+              setInput("");
+            }
+          }}
+        >
           <Grid container>
             <Grid size={{ xs: 8, md: 10 }}>
               <Input
@@ -37,12 +46,7 @@ const InputChatSubmit = ({ chat, setChat, handleResponse }) => {
             <Grid size={{ xs: 1, md: 1 }}>
               <Button
                 type="submit"
-                onClick={() => {
-                  if (input != "") {
-                    handleResponse(input);
-                    setInput("");
-                  }
-                }}
+                // onClick={}
                 sx={{ backgroundColor: "primary.main", color: "black", p: 1.5 }}
               >
                 Ask
