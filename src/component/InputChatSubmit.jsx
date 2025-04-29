@@ -22,7 +22,7 @@ const InputChatSubmit = ({ chat, setChat, handleResponse }) => {
               inputRef={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Message Bot AI…"
+              placeholder="Message Bot AI..."
               disableUnderline
               sx={{
                 width: "100%",
