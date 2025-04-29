@@ -1,6 +1,16 @@
 import React, { useEffect } from "react";
 import Navbar from "../component/Navbar";
-import { Box, Rating, Stack, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  Menu,
+  MenuItem,
+  Rating,
+  Select,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useOutletContext } from "react-router-dom";
 import data from "../../Sample/data.json";
 import { EntityType } from "../util/Enum";
@@ -12,14 +22,23 @@ import moment from "moment";
 
 const History = () => {
   const [chatHistory, setChatHistory] = React.useState([]);
+  const [filterChatHistory, setFilterChatHistory] = React.useState([]);
   const fetchChatHistory = () => {
     // Simulate fetching chat history from a server or local storage
     const storedChat = JSON.parse(localStorage.getItem("chat")) || [];
     setChatHistory(storedChat);
+    setFilterChatHistory(storedChat);
   };
   useEffect(() => {
     fetchChatHistory();
   }, []);
+  const handleFilter = (e) => {
+    const filterValue = e.target.innerText;
+    const filteredHistory = chatHistory.filter(
+      (chat) => chat.rating == filterValue
+    );
+    setFilterChatHistory(filteredHistory);
+  };
 
   return (
     <Stack
@@ -28,10 +47,34 @@ const History = () => {
         backgroundColor: "primary.background",
       }}
     >
-      <Typography variant="h4" sx={{ p: 2, fontWeight: "bold" }}>
+      {" "}
+      <Navbar />
+      <Typography
+        variant="h2"
+        sx={{ p: 2, fontSize: "2rem", fontWeight: "bold" }}
+      >
         Conversation History
       </Typography>
-
+      <Autocomplete
+        disablePortal
+        onChange={(e) => handleFilter(e)}
+        options={[1, 2, 3, 4, 5]}
+        sx={{ width: 300, m: "1rem 2rem" }}
+        renderInput={(params) => (
+          <TextField {...params} label="Filter By Rating" />
+        )}
+      />{" "}
+      {filterChatHistory.length == 0 && (
+        <Typography
+          textAlign={"center"}
+          p={3}
+          m={4}
+          borderRadius={2}
+          sx={{ backgroundColor: "#ffffff" }}
+        >
+          No saved chats.
+        </Typography>
+      )}
       <Box
         sx={{
           flexGrow: 1,
@@ -39,8 +82,8 @@ const History = () => {
           p: 0,
         }}
       >
-        {chatHistory.length > 0 &&
-          chatHistory.map((chat, index) => (
+        {filterChatHistory.length > 0 &&
+          filterChatHistory.map((chat, index) => (
             <Box key={index} sx={{ p: 2, borderBottom: "1px solid #ccc" }}>
               <Stack direction="column" sx={{ m: 2 }} textAlign={"left"}>
                 <Typography>

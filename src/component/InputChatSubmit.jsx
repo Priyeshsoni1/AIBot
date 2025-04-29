@@ -16,7 +16,7 @@ const InputChatSubmit = ({ chat, setChat, handleResponse }) => {
   return (
     <Box>
       <Box p={".5rem .5rem"}>
-        <Box component={"form"}>
+        <Box>
           <Grid container>
             <Grid size={{ xs: 8, md: 10 }}>
               <Input
