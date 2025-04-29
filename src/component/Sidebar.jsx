@@ -10,7 +10,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Sidebar = ({ chat, setChat, setMenuOpen, menuOpen, isMobile }) => {
   const navigate = useNavigate();
@@ -30,74 +30,76 @@ const Sidebar = ({ chat, setChat, setMenuOpen, menuOpen, isMobile }) => {
           Close
         </Button>
       )}
-      <Stack
-        direction={"row"}
-        gap={1}
-        onClick={() => {
-          navigate("/");
-          setChat([]);
-          setMenuOpen(false);
-        }}
-        padding={2}
-        alignItems={"center"}
-        justifyContent={"space-between"}
-        sx={{ backgroundColor: "primary.main", cursor: "pointer" }}
-      >
-        <Box
-          component={"img"}
-          src={"sidebarImg.png"}
-          height={40}
-          width={40}
-          borderRadius={2}
-          boxShadow={2}
-        />
-        <Typography
-          fontSize={30}
-          fontWeight={600}
-          color={"black"}
-          sx={{
-            textTransform: "capitalize",
-            fontFamily: "Poppins",
+      <Link to={"/"} style={{ textDecoration: "none" }}>
+        <Stack
+          direction={"row"}
+          gap={1}
+          onClick={() => {
+            setChat([]);
+            setMenuOpen(false);
           }}
+          padding={2}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          sx={{ backgroundColor: "primary.main", cursor: "pointer" }}
         >
-          New Chat
-        </Typography>
-        <Box
-          component={"img"}
-          src={"TextIcon.png"}
-          height={24}
-          width={24}
+          <Box
+            component={"img"}
+            src={"sidebarImg.png"}
+            height={40}
+            width={40}
+            borderRadius={2}
+            boxShadow={2}
+          />
+          <Typography
+            fontSize={30}
+            fontWeight={600}
+            color={"black"}
+            sx={{
+              textTransform: "capitalize",
+              fontFamily: "Poppins",
+            }}
+          >
+            New Chat
+          </Typography>
+          <Box
+            component={"img"}
+            src={"TextIcon.png"}
+            height={24}
+            width={24}
+            borderRadius={2}
+            boxShadow={2}
+          />
+        </Stack>
+      </Link>{" "}
+      <Link to={"/history"} style={{ textDecoration: "none" }}>
+        <Stack
+          onClick={() => {
+            setMenuOpen(false);
+          }}
+          direction={"row"}
+          gap={1}
+          m={2}
           borderRadius={2}
-          boxShadow={2}
-        />
-      </Stack>
-      <Stack
-        onClick={() => {
-          navigate("/history");
-          setMenuOpen(false);
-        }}
-        direction={"row"}
-        gap={1}
-        m={2}
-        borderRadius={2}
-        padding={2}
-        textAlign={"center"}
-        justifyContent={"space-between"}
-        sx={{ backgroundColor: "primary.main", cursor: "pointer" }}
-      >
-        <Typography
-          fontSize={22}
-          fontWeight={600}
-          color={"black"}
+          padding={2}
           textAlign={"center"}
-          sx={{
-            textTransform: "capitalize",
-            fontFamily: "Poppins",
-          }}
+          justifyContent={"space-between"}
+          sx={{ backgroundColor: "primary.main", cursor: "pointer" }}
         >
-          Past Conversations
-        </Typography>
-      </Stack>
+          <Typography
+            fontSize={22}
+            fontWeight={600}
+            color={"black"}
+            textAlign={"center"}
+            sx={{
+              textTransform: "capitalize",
+              fontFamily: "Poppins",
+            }}
+          >
+            Past Conversations
+          </Typography>
+        </Stack>
+      </Link>
     </Box>
   );
 

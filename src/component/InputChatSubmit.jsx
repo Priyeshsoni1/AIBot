@@ -1,19 +1,25 @@
 import { Box, Button, Grid, Input, Stack } from "@mui/material";
 import { enqueueSnackbar } from "notistack";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 } from "uuid";
 import FeedbackForm from "./FeedbackForm";
 
 const InputChatSubmit = ({ chat, setChat, handleResponse }) => {
   const [input, setInput] = useState("");
   const [openFeedback, setOpenFeedback] = useState(false);
-
+  const inputRef = React.useRef(null);
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
   return (
     <Box>
       <Box p={".5rem .5rem"}>
         <Grid container>
           <Grid size={{ xs: 8, md: 10 }}>
             <Input
+              inputRef={inputRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Message Bot AI…"
