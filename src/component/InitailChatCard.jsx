@@ -27,7 +27,7 @@ const InitailChatCard = ({ item, handleResponse }) => {
         <Typography fontWeight={700} fontSize={"1rem"}>
           {item.heading}
         </Typography>
-        <Typography>{item.subtext}</Typography>
+        <Typography component={"p"}>{item.subtext}</Typography>
       </Stack>
     </Box>
   );

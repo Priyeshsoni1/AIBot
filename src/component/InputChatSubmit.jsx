@@ -16,11 +16,10 @@ const InputChatSubmit = ({ chat, setChat, handleResponse }) => {
   return (
     <Box>
       <Box p={".5rem .5rem"}>
-        <form>
+        <Box component={"form"}>
           <Grid container>
             <Grid size={{ xs: 8, md: 10 }}>
               <Input
-                inputRef={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Message Bot AI..."
@@ -32,6 +31,7 @@ const InputChatSubmit = ({ chat, setChat, handleResponse }) => {
                   p: 1,
                   backgroundColor: "#ffffff",
                 }}
+                inputRef={inputRef}
               />
             </Grid>
             <Grid size={{ xs: 1, md: 1 }}>
@@ -63,7 +63,7 @@ const InputChatSubmit = ({ chat, setChat, handleResponse }) => {
               </Button>{" "}
             </Grid>
           </Grid>
-        </form>
+        </Box>
       </Box>{" "}
       <FeedbackForm
         open={openFeedback}
